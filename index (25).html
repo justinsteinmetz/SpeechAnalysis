@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ethos, Logos, Pathos: Reading Bush, 11 September 2001</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#101114; --panel:#181a1f; --panel2:#1f2229; --line:#2c3039;
+  --text:#ebe8e1; --muted:#a09d95; --faint:#97948c;
+  --ethos:#e0a458; --logos:#7fb685; --pathos:#6fa8dc; --none:#3a3e47;
+  --us:#f2efe6; --them:#ee7d6b;
+  --tbbg:rgba(16,17,20,.92);--ubg:rgba(242,239,230,.13);--tcol:#f6b3a7;
+  --bgimg:radial-gradient(1200px 500px at 70% -10%,#1b1e26 0%,transparent 60%),radial-gradient(900px 400px at 0% 20%,#17191f 0%,transparent 60%);
+  --soft:#d6d3cb;--focus:#ffd166;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;
+  background-image:var(--bgimg);}
+body.light{--focus:#0a4fd1;--soft:#3a3832;--bg:#faf8f3;--panel:#ffffff;--panel2:#f1eee6;--line:#d9d4c7;--text:#1c1b19;--muted:#5f5b52;--faint:#69655b;--ethos:#8f5409;--logos:#33703f;--pathos:#1f609c;--none:#d6d1c4;--us:#1c1b19;--them:#bb3d2a;--tbbg:rgba(250,248,243,.94);--ubg:rgba(28,27,25,.10);--tcol:#b23a28;--bgimg:none}
+.wrap{max-width:900px;margin:0 auto;padding:28px 18px 80px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(26px,4.4vw,40px);line-height:1.15;margin:6px 0 8px;letter-spacing:-.01em}
+h2{font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:46px 0 14px;font-weight:600;display:flex;gap:10px;align-items:center}
+h2 .n{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;border:1px solid var(--line);color:var(--text);font-size:12px}
+.lede{color:var(--muted);max-width:62ch;margin:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.triad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:700px){.triad{grid-template-columns:1fr}}
+.tc{border-top:3px solid var(--c);}
+.tc h3{margin:0 0 2px;font-size:20px;font-family:var(--serif);color:var(--c)}
+.tc .sub{font-size:12px;color:var(--muted);margin-bottom:8px;letter-spacing:.04em}
+.tc ul{margin:0;padding-left:18px;color:var(--soft);font-size:14px}
+.tc .q{font-size:13px;color:var(--muted);margin-top:10px;font-style:italic}
+.ethos{--c:var(--ethos)} .logos{--c:var(--logos)} .pathos{--c:var(--pathos)}
+.predict{margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.predict span.l{font-size:14px;color:var(--muted)}
+button{font:inherit;color:inherit;cursor:pointer}
+.pbtn{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14px;min-height:36px}
+.pbtn[aria-pressed=true]{border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c);color:var(--c)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+/* toolbar */
+.toolbar{position:sticky;top:0;z-index:20;background:var(--tbbg);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin:0 -18px;padding:10px 18px}
+.tb-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.tally{flex:1 1 260px;min-width:220px}
+.bar{display:flex;height:10px;border-radius:6px;overflow:hidden;background:var(--none)}
+.bar i{display:block;height:100%;transition:width .25s}
+.bar .e{background:var(--ethos)} .bar .l{background:var(--logos)} .bar .p{background:var(--pathos)}
+.tl{display:flex;gap:14px;font-size:12px;color:var(--muted);margin-top:5px;flex-wrap:wrap}
+.tl b{font-weight:600}
+.tl .e b{color:var(--ethos)} .tl .l b{color:var(--logos)} .tl .p b{color:var(--pathos)}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.fbtn{background:transparent;border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:12px;color:var(--muted);min-height:30px}
+.fbtn[aria-pressed=true]{background:var(--text);color:var(--bg);border-color:var(--text)}
+
+/* speech */
+.mv{margin:30px 0 8px;display:flex;align-items:baseline;gap:10px;color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.mv b{font-size:20px;color:var(--text);font-family:var(--serif);letter-spacing:0}
+.seg{position:relative;border-left:4px solid var(--c,var(--none));background:transparent;margin:6px 0;padding:10px 12px 10px 14px;border-radius:0 10px 10px 0;transition:background .15s}
+.seg:hover{background:rgba(255,255,255,.03)}
+.seg.open{background:var(--panel)}
+.seg .row{display:flex;gap:12px;align-items:flex-start;cursor:pointer;width:100%;text-align:left;background:none;border:0;padding:0}
+.seg .no{font-size:11px;color:var(--faint);min-width:22px;padding-top:7px;font-variant-numeric:tabular-nums}
+.seg .tx{font-family:var(--serif);font-size:clamp(18px,2.3vw,21px);line-height:1.5}
+.flag{display:none;color:var(--them);font-size:12px;margin-left:6px;font-family:var(--sans)}
+body.showflags .flag,body.teacher .flag{display:inline}
+.tags{margin:8px 0 0 34px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;border-radius:999px;padding:2px 9px;border:1px solid var(--line);color:var(--muted);font-family:var(--sans)}
+.tag.ap{border-color:var(--c);color:var(--c);font-weight:600}
+.note-show{margin:6px 0 0 34px;font-size:14px;color:var(--soft);font-family:var(--sans)}
+.editor{margin:14px 0 4px 34px;padding-top:12px;border-top:1px dashed var(--line);font-family:var(--sans)}
+.editor .lab{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 6px;font-weight:600}
+.aprow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.ab{border:1px solid var(--line);background:var(--panel2);border-radius:8px;padding:7px 14px;font-weight:600;min-height:38px;color:var(--c)}
+.ab[aria-pressed=true]{background:var(--c);color:var(--bg);border-color:var(--c)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--panel2);border-radius:999px;padding:5px 11px;font-size:13px;color:var(--soft);min-height:32px}
+.chip[aria-pressed=true]{background:var(--text);color:var(--bg);border-color:var(--text);font-weight:600}
+.defline{font-size:13px;color:var(--muted);margin:8px 0 14px;min-height:20px}
+.defline b{color:var(--text)}
+textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--text);font:inherit;font-size:14px;padding:9px 11px;resize:vertical;min-height:64px}
+.eact{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.btn{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:7px 13px;font-size:13px;min-height:34px}
+.btn:hover{border-color:var(--muted)}
+.btn.pri{background:var(--text);color:var(--bg);border-color:var(--text);font-weight:600}
+.key{margin-top:12px;border:1px solid var(--line);border-left:3px solid var(--c);border-radius:8px;padding:10px 12px;background:var(--bg);font-size:14px}
+.key .kh{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;font-weight:600}
+.key .ok{color:var(--logos);font-weight:600}
+.key .miss{color:var(--muted)}
+
+/* lens */
+.lens-seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.lens-seg button{background:transparent;border:0;padding:6px 12px;font-size:13px;color:var(--muted);min-height:34px;border-right:1px solid var(--line)}
+.lens-seg button:last-child{border-right:0}
+.lens-seg button[aria-pressed=true]{background:var(--text);color:var(--bg);font-weight:600}
+.u{background:var(--ubg);border-bottom:2px solid var(--us);border-radius:2px}
+.t{border-bottom:2px dotted var(--them);color:var(--tcol)}
+.counts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+@media(max-width:700px){.counts{grid-template-columns:1fr}}
+.cn{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.cn .big{font-family:var(--serif);font-size:34px;line-height:1}
+.cn .sm{font-size:12px;color:var(--muted);margin-top:6px}
+details.q{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin:8px 0;padding:0}
+details.q summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none;display:flex;gap:10px;align-items:center}
+details.q summary::-webkit-details-marker{display:none}
+details.q summary::before{content:'+';display:inline-grid;place-items:center;width:20px;height:20px;border:1px solid var(--line);border-radius:50%;font-size:14px;color:var(--muted);flex:none}
+details.q[open] summary::before{content:'–'}
+details.q .b{padding:0 16px 14px 46px;color:var(--soft);font-size:15px}
+.verdict{margin-top:12px}
+.verdict .stem{font-family:var(--serif);font-size:18px;margin-bottom:8px}
+.outbox{margin-top:12px}
+.muted{color:var(--muted)}
+.reclinks{font-size:13px;color:var(--muted);margin:10px 0 0}
+.reclinks a{color:var(--soft);text-decoration:underline;text-underline-offset:2px}
+.src{margin-top:50px;border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;color:var(--faint)}
+.teach{display:none;margin-top:22px;border:1px solid var(--them);border-radius:12px;padding:14px 18px;background:rgba(238,125,107,.06)}
+body.teacher .teach{display:block}
+.teach h3{margin:0 0 8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--them)}
+.teach table{width:100%;border-collapse:collapse;font-size:14px}
+.teach td{padding:6px 8px;border-top:1px solid var(--line);vertical-align:top}
+.teach td:first-child{white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums;width:1%}
+.hide{display:none!important}
+.seg{scroll-margin-top:190px}
+.star{color:var(--text);font-size:12px;opacity:.85}
+.task{margin:0 0 14px;padding:14px 18px}
+.task ol{margin:6px 0 0;padding-left:20px;font-size:15px;color:var(--soft)}
+
+.task li{margin:3px 0}
+.starter{font-size:12px;color:var(--muted);margin:6px 0 0}
+.lensrow{display:flex;gap:10px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.lensrow .ll{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.grp{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:10px 0 6px;font-weight:600}
+.themebtn{float:right;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12px;min-height:32px}
+@media(max-width:700px){.toolbar{position:static}.seg{scroll-margin-top:12px}}
+
+.printsheet{display:none}
+@media print{
+  body{background:#fff!important;background-image:none!important;color:#000!important}
+  .wrap>*:not(.printsheet){display:none!important}
+  .wrap{padding:0;max-width:none}
+  .printsheet{display:block!important;font-family:Georgia,'Times New Roman',serif;color:#000}
+  .printsheet *{color:#000!important}
+  .ps-title{font-size:18pt;margin:0 0 4px}
+  .ps-sub{font-size:10pt;margin:0 0 10px;font-family:Arial,sans-serif}
+  .ps-task{font-size:10pt;font-family:Arial,sans-serif;margin:0 0 10px;padding-left:16px}
+  .ps-row{border-top:1px solid #000;padding:7px 0;break-inside:avoid}
+  .ps-plain{padding:5px 0;break-inside:avoid;font-size:11pt}
+  .ps-n{font-family:Arial,sans-serif;font-size:8pt;margin-right:6px}
+  .ps-s{font-size:12pt;margin:0 0 6px}
+  .ps-l{font-family:Arial,sans-serif;font-size:9pt;display:flex;gap:6px;margin:5px 0;align-items:flex-end}
+  .ps-l .ln{flex:1;border-bottom:1px solid #000;height:13px}
+  .ps-h{font-family:Arial,sans-serif;font-size:10pt;font-weight:bold;margin:14px 0 4px;text-transform:uppercase;letter-spacing:.06em;break-after:avoid}
+  .ps-q{font-size:10.5pt;margin:0 0 6px;break-inside:avoid}
+  .ps-src{font-family:Arial,sans-serif;font-size:7.5pt;margin-top:14px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <button class="themebtn" id="themeBtn" aria-pressed="false">Light mode</button>
+  <button class="themebtn" id="printBtn" style="margin-right:8px">Print sheet</button>
+  <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">Speech analysis · Year 12</div>
+  <h1>Twelve hours after: how does a speech steady a nation?</h1>
+  <p class="lede">George W. Bush addressed the American public from the Oval Office at 8.30 p.m. on 11 September 2001. You will read it twice: once for what it does to you, once for how it does it.</p>
+  <p class="reclinks">Recording of the address (about 4½ minutes): <a href="https://www.americanrhetoric.com/gwbushspeeches.htm" target="_blank" rel="noopener">American Rhetoric (mp3; find the 11 September address)</a> · <a href="https://www.wpbstv.org/?p=80279" target="_blank" rel="noopener">PBS NewsHour (video)</a></p>
+</header>
+
+<div class="teach" id="teach">
+  <h3>Teacher run-sheet · 20 minutes</h3>
+  <table>
+    <tr><td>0:00–2:00</td><td>Triad on the board. Students make their prediction below: which appeal will dominate in a speech given twelve hours after the attacks?</td></tr>
+    <tr><td>2:00–7:00</td><td>Listen to the recording (about four and a half minutes; links under the introduction) or read it aloud while students follow the text. No pens: only notice where your feelings move.</td></tr>
+    <tr><td>7:00–15:00</td><td>Pairs claim one movement (A–E). Each pair analyses <b>one</b> ★ sentence thoroughly (appeal, at least two devices, effect), then uses "Compare with suggested reading" to find one disagreement. Early finishers take a second ★ sentence.</td></tr>
+    <tr><td>15:00–19:00</td><td>Switch on the Us / Them lens (top bar) and read the counts. Each pair picks one of the three framing questions. Cold-call one pair per question and ask each for the point they can defend. The context card (what the speech could not yet know) is there if students leap ahead to later events.</td></tr>
+    <tr><td>19:00–20:00</td><td>Exit line: the one-sentence verdict. The full version (strategy, two examples, political implication) is the homework.</td></tr>
+  </table>
+  <p style="font-size:13.5px;margin:10px 0 0">Recording links sit under the introduction, in the student view too. Check that one plays on the classroom device before the lesson.</p>
+  <p class="muted" style="font-size:13px;margin:10px 0 0">Suggested readings, framing notes and ⚑ markers are shown on every sentence in this view. In the student view the framing notes stay hidden. Remove <b>#key</b> from the address to return to the student view.</p>
+</div>
+
+<h2><span class="n">1</span> The triad</h2>
+<div class="triad">
+  <div class="card tc ethos"><h3>Ethos</h3><div class="sub">character</div>
+    <ul><li>confidence, experience, knowledge</li><li>credentials, endorsements</li><li>morals</li></ul>
+    <div class="q">Why should I trust you?</div></div>
+  <div class="card tc logos"><h3>Logos</h3><div class="sub">logic</div>
+    <ul><li>references, data, statistics</li><li>case studies, research, analysis</li><li>analogies</li></ul>
+    <div class="q">Does it add up?</div></div>
+  <div class="card tc pathos"><h3>Pathos</h3><div class="sub">emotion</div>
+    <ul><li>images, stories</li><li>emotive language, personal feelings</li><li>inspirational quotations</li></ul>
+    <div class="q">How should I feel?</div></div>
+</div>
+<p class="lede" style="margin-top:14px">These are ways of persuading, not boxes for words: one sentence can work in more than one way. Keep three questions apart. <b>Appeal:</b> how is it trying to persuade? <b>Device:</b> which technique is doing it? <b>Effect:</b> what might it make the audience think, feel or accept?</p>
+<div class="predict">
+  <span class="l">Prediction: which appeal will dominate this speech?</span>
+  <button class="pbtn ethos" data-pred="ethos" aria-pressed="false">Ethos</button>
+  <button class="pbtn logos" data-pred="logos" aria-pressed="false">Logos</button>
+  <button class="pbtn pathos" data-pred="pathos" aria-pressed="false">Pathos</button>
+</div>
+
+<h2><span class="n">2</span> Annotate</h2>
+<div class="card task">
+  <b>Your task as a pair: 8 minutes</b>
+  <ol>
+    <li>Claim one movement (A–E) with the filter below. Choose <b>one ★ sentence</b> from it.</li>
+    <li>Analyse that one sentence thoroughly: click it, choose the appeal it leans on most, tick at least two devices, and write out the effect. Many sentences blend appeals: choose the stronger one and argue for it.</li>
+    <li>Use “Compare with suggested reading” and find <b>one place you disagree</b> with it, or something it misses. Say why: that is analysis.</li>
+    <li><b>Aim for:</b> one sentence analysed thoroughly, one disagreement with the suggested reading, and one point you can defend in the class discussion. If you finish early, take a second ★ sentence.</li>
+  </ol>
+</div>
+
+<div class="toolbar" id="toolbar">
+  <div class="tb-row">
+    <div class="tally">
+      <div class="muted" style="font-size:11px;margin-bottom:4px">Bar: the mix of appeals you have tagged</div>
+      <div class="bar" aria-hidden="true"><i class="e" id="be"></i><i class="l" id="bl"></i><i class="p" id="bp"></i></div>
+      <div class="tl"><span class="e">Ethos <b id="ce">0</b></span><span class="l">Logos <b id="cl">0</b></span><span class="p">Pathos <b id="cp">0</b></span><span id="cdone" class="muted">0 of 34 tagged</span></div>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Show movement"></div>
+  </div>
+  <div class="lensrow"><span class="ll">Lens</span>
+    <div class="lens-seg" id="lens" role="group" aria-label="Lens">
+      <button data-lens="off" aria-pressed="true">Off</button>
+      <button data-lens="us" aria-pressed="false">Us</button>
+      <button data-lens="them" aria-pressed="false">Them</button>
+      <button data-lens="both" aria-pressed="false">Both</button>
+    </div>
+    <span id="lensnote" class="muted" style="font-size:12px"></span>
+    <span id="predline" class="muted" style="font-size:12px"></span>
+  </div>
+</div>
+
+<div id="list"></div>
+
+<h2><span class="n">3</span> Who is “we”? Who is left out?</h2>
+<p class="lede">The speech does real work: it consoles and steadies a frightened audience. The question for this step is what else its language does while it does that. Switch the lens on in the top bar, read the counts, then pick <b>one</b> question per pair.</p>
+<div class="counts" id="counts"></div>
+
+<p class="muted" style="font-size:13.5px;margin:0 0 12px">A count shows where to look, not what it means. Does the speech merely describe an American community, or does it help to construct one?</p>
+<details class="q"><summary>Context: what the speech could not yet know</summary><div class="b">At 8.30 p.m. on 11 September 2001 the attacks were about twelve hours old, and this speech names no group and no country. On the night its vocabulary is still partly that of crime and justice (“bring them to justice”), alongside the vocabulary of war (“the war against terrorism”). Nine days later, on 20 September, Bush addressed Congress and named al-Qaeda and the Taliban; US-led air strikes on Afghanistan began on 7 October. Keep two questions apart: what does this speech say and do <i>on the night</i>, and what did later events do with its language? The second is worth asking, but it is hindsight. Do not judge the speech by what its author could not yet know.</div></details>
+<details class="q"><summary>The nameless enemy</summary><div class="b">The speech never names the attackers, a group, a country or a grievance. What does the word “evil” do that a name could not? What does it make unnecessary: explanation, history, negotiation?</div></details>
+<details class="q"><summary>Beacon and light</summary><div class="b">“The brightest beacon for freedom… no one will keep that light from shining.” Light and darkness have long been the vocabulary of empire: enlightening, civilising, the “dark continent”. Does this speech inherit that moral geography? Who is imagined to be standing in the dark?</div></details>
+<details class="q"><summary>From justice to war</summary><div class="b">Trace the vocabulary: “bring them to justice” (courts and police), “no distinction between the terrorists… and those who harbor them”, “win the war against terrorism”. Where does the frame change? What does each frame allow a government to do, and can a war against a noun ever end?</div></details>
+
+<div class="card verdict">
+  <div class="stem">The most consequential rhetorical strategy in this speech is <span class="muted">________</span>. Two examples: <span class="muted">________</span> and <span class="muted">________</span>. Its political implication is <span class="muted">________</span>.</div>
+  <textarea id="verdict" placeholder="In class: one sentence. For homework: a paragraph with two short quotations and the political implication." aria-label="One-sentence verdict"></textarea>
+  <div class="eact">
+    <button class="btn pri" id="copyBtn">Copy my annotations</button>
+    <button class="btn" id="resetBtn">Clear everything</button>
+    <span id="copyMsg" class="muted" style="font-size:13px;align-self:center"></span>
+  </div>
+  <div class="outbox hide" id="outbox"><div class="muted" style="font-size:13px;margin-bottom:6px">Copying was blocked here. Select and copy this instead:</div><textarea id="outta" rows="8" readonly></textarea></div>
+</div>
+
+<section class="printsheet" id="printsheet"></section>
+<div class="src">
+  Text: “Address to the Nation on the Terrorist Attacks”, 11 September 2001, from <i>Public Papers of the Presidents of the United States: George W. Bush, 2001, Book II</i>, pp. 1099–1100 (<a href="https://www.govinfo.gov/content/pkg/PPP-2001-book2/html/PPP-2001-book2-doc-pg1099.htm" target="_blank" rel="noopener" style="color:inherit">U.S. Government Publishing Office</a>; a work of the US government). This is the published transcript; the spoken delivery may differ in small details. The split into 34 sentences and five movements, and the suggested readings, are ours: they are one reading, not the answer. Your annotations stay in this browser only.
+</div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+var DEV = [
+ ["anaphora","Anaphora","Repetition of a word or phrase at the start of successive clauses (“our… our… our”)."],
+ ["tricolon","Tricolon / climax","Three parallel items, often rising in intensity."],
+ ["antithesis","Antithesis","Opposed ideas set in parallel structure (can / cannot)."],
+ ["metaphor","Metaphor / personification","One thing described as another, or a nation given human actions."],
+ ["imagery","Imagery","Language that makes the listener see, hear or feel a scene."],
+ ["sound","Sound patterning","Alliteration, assonance, rhyme or near-rhyme."],
+ ["repetition","Repetition / motif","A word or image returning across the speech."],
+ ["superlative","Superlative","Extreme comparison or degree: the brightest, the very worst."],
+ ["absolute","Absolute language","Totalising claims that allow no exception: all, none, no one, every, ever."],
+ ["inclusive","Inclusive pronouns","We, our, us: building an in-group and drawing the listener in."],
+ ["emotive","Emotive lexis","Loaded words chosen for feeling rather than information."],
+ ["listing","Listing / merism","A catalogue of items, or two extremes standing for the whole (“at home and around the world”)."],
+ ["allusion","Allusion / quotation","A reference to scripture, history or another text for authority."],
+ ["binary","Binary opposition","A world split into two moral camps (good / evil)."],
+ ["assertion","Assertion without evidence","A claim stated as fact, with no support offered."],
+ ["precedent","Appeal to precedent","Using the past as proof of what will happen."],
+ ["declaration","Declaration","A sentence that does something by being said: commits, declares, defines."],
+ ["voice","Voice and register","First person or direct address, and shifts between formal, bureaucratic and personal tone."]
+];
+var ARGSTART=13; // devices from this index are "argument and voice moves"
+var DEFS = {}; DEV.forEach(function(d){DEFS[d[0]]=d;});
+
+var MOVES = {
+ A:{name:"Grief and anger",from:1,to:5},
+ B:{name:"Defiance",from:6,to:14},
+ C:{name:"Reassurance",from:15,to:21},
+ D:{name:"Response",from:22,to:27},
+ E:{name:"Prayer and closing",from:28,to:34}
+};
+
+// t = text, a = main appeal, al = also, d = devices, n = note, f = framing flag
+var S = [
+{t:"Good evening.",a:"ethos",d:["voice"],n:"Plain and calm before any argument: the steadiness is the ethos. Note the bookend: the speech ends on “Good night”."},
+{t:"Today our fellow citizens, our way of life, our very freedom came under attack in a series of deliberate and deadly terrorist acts.",a:"pathos",al:"ethos",d:["anaphora", "tricolon", "sound", "inclusive"],n:"“Our… our… our” builds an escalating list: people, then a way of life, then freedom. Alliteration in “deliberate and deadly”.",fn:"Individual deaths become an attack on an abstraction. What does that make the response?",p:1},
+{t:"The victims were in airplanes or in their offices: secretaries, business men and women, military and Federal workers, moms and dads, friends and neighbors.",a:"pathos",d:["listing", "voice"],n:"A catalogue of ordinary, domestic nouns humanises the dead. “Moms and dads, friends and neighbors” is the register of a community, not a state."},
+{t:"Thousands of lives were suddenly ended by evil, despicable acts of terror.",a:"pathos",d:["emotive", "binary"],n:"Moral vocabulary (evil, despicable) arrives before any named agent. Note the pairing and the abstract nouns: acts of terror.",fn:"The grammar: “acts” do the killing, not people. What would naming a person or a group have added?",p:1},
+{t:"The pictures of airplanes flying into buildings, fires burning, huge structures collapsing have filled us with disbelief, terrible sadness, and a quiet, unyielding anger.",a:"pathos",d:["imagery", "tricolon", "emotive", "inclusive"],n:"Two tricolons: three images from a shared television memory, then three feelings, climbing to anger. The sentence tells the audience what to feel and where it should end up.",p:1},
+{t:"These acts of mass murder were intended to frighten our Nation into chaos and retreat, but they have failed.",a:"ethos",al:"logos",d:["antithesis", "assertion", "emotive"],n:"Claims to know the attackers’ intention and states it as fact. “Mass murder” is criminal vocabulary. Hold on to it: the frame will change."},
+{t:"Our country is strong.",a:"ethos",al:"pathos",d:["assertion"],n:"Four words. Confidence as performance, doing the job a statistic would do in a logos-led speech. It also works as plain emotional reassurance, so ethos or pathos can both be argued."},
+{t:"A great people has been moved to defend a great nation.",a:"pathos",d:["repetition","emotive"],n:"“Great” twice fuses people and nation: an evaluative word, repeated, rather than a measured claim. “Has been moved” is passive and emotional at once: moved by what, and by whom?"},
+{t:"Terrorist attacks can shake the foundations of our biggest buildings, but they cannot touch the foundation of America.",a:"pathos",d:["antithesis", "metaphor", "repetition", "imagery"],n:"The collapsed towers become a metaphor. Buildings fall, but the “foundation of America” is declared untouchable. Literal loss converted to symbolic victory.",p:1},
+{t:"These acts shattered steel, but they cannot dent the steel of American resolve.",a:"pathos",d:["antithesis", "metaphor", "repetition"],n:"“Steel” flips from literal to figurative mid-sentence. The verbs also shift in strength and tense: shattered, then cannot dent."},
+{t:"America was targeted for attack because we’re the brightest beacon for freedom and opportunity in the world.",a:"logos",al:"pathos",d:["metaphor", "superlative", "assertion", "inclusive"],n:"A cause is offered (“because”), which looks like logos, but nothing supports it. The beacon metaphor and the superlative flatter the audience.",fn:"It explains the attack with no history and no grievance. What kind of explanation is a compliment to yourself?",p:1},
+{t:"And no one will keep that light from shining.",a:"pathos",d:["metaphor", "absolute"],n:"The light motif continues. “No one” is absolute. Opening with “And” gives a spoken rhythm.",fn:"Light implies a dark. Who is imagined to be standing in it?"},
+{t:"Today our Nation saw evil, the very worst of human nature.",a:"pathos",d:["metaphor", "superlative", "emotive", "binary"],n:"The nation “sees”: personification. “The very worst” is a superlative that closes down nuance.",fn:"Evil is attributed to human nature in general. Look at the next sentence: who is credited with the best?",p:1},
+{t:"And we responded with the best of America, with the daring of our rescue workers, with the caring for strangers and neighbors who came to give blood and help in any way they could.",a:"pathos",d:["antithesis", "anaphora", "tricolon", "sound", "inclusive"],n:"Antithesis with the previous sentence: worst / best. “With the… with the… with the” is anaphora, and daring and caring rhyme.",fn:"Evil belongs to human nature; the good response belongs to America. Who gets to claim the virtue?",p:1},
+{t:"Immediately following the first attack, I implemented our Government’s emergency response plans.",a:"ethos",d:["voice"],n:"The voice moves from mourner to manager. “I implemented” is first-person competence in an administrator’s register.",p:1},
+{t:"Our military is powerful, and it’s prepared.",a:"ethos",d:["sound"],n:"A short parallel pair (“powerful… prepared”) with alliteration. Reassurance for the home audience, and possibly a signal to others who are listening."},
+{t:"Our emergency teams are working in New York City and Washington, DC, to help with local rescue efforts.",a:"logos",al:"ethos",d:["voice", "inclusive"],n:"Specific places and actions: the nearest this speech gets to evidence. They also perform competence and reassurance. The present progressive gives immediacy."},
+{t:"Our first priority is to get help to those who have been injured and to take every precaution to protect our citizens at home and around the world from further attacks.",a:"logos",al:"ethos",d:["listing", "inclusive"],n:"Prioritising sounds rational (logos by structure). The merism “at home and around the world” signals that no place is outside the duty to protect American citizens.",p:1},
+{t:"The functions of our Government continue without interruption.",a:"ethos",d:["voice"],n:"Bureaucratic calm as strength. Understatement tells the listener that the state is intact."},
+{t:"Federal agencies in Washington which had to be evacuated today are reopening for essential personnel tonight and will be open for business tomorrow.",a:"logos",d:["tricolon", "voice"],n:"Today, tonight, tomorrow: a time tricolon that carries the audience from disruption to normality."},
+{t:"Our financial institutions remain strong, and the American economy will be open for business as well.",a:"ethos",al:"logos",d:["repetition", "voice"],n:"“Open for business” returns from the previous sentence, and “strong” echoes “Our country is strong”. Freedom and markets sit side by side: normality means the economy reopening.",p:1},
+{t:"The search is underway for those who are behind these evil acts.",a:"ethos",d:["repetition", "emotive", "binary"],n:"“Evil” again: repetition builds a motif. The enemy is only “those who”.",fn:"No name and no group: a search with no suspect. What does that make possible?",p:1},
+{t:"I’ve directed the full resources of our intelligence and law enforcement communities to find those responsible and to bring them to justice.",a:"ethos",d:["voice"],n:"Police-and-courts vocabulary: “find those responsible”, “bring them to justice”. Note the parallel infinitives.",fn:"This is still the crime frame. Keep it in mind for sentence 27."},
+{t:"We will make no distinction between the terrorists who committed these acts and those who harbor them.",a:"ethos",al:"logos",d:["declaration", "inclusive"],n:"A declaration, not an argument: “We will make no distinction” commits the speaker and the audience.",fn:"Guilt is widened from the perpetrators to anyone who hosts them. What actions does that wording make thinkable?",p:1},
+{t:"I appreciate so very much the Members of Congress who have joined me in strongly condemning these attacks.",a:"ethos",d:["voice"],n:"Ethos by endorsement (the diagram’s word). “So very much” is a personal, conversational intensifier inside a formal speech. It signals unity across Congress."},
+{t:"And on behalf of the American people, I thank the many world leaders who have called to offer their condolences and assistance.",a:"ethos",d:["voice"],n:"Endorsement again, this time international. Outside approval lends legitimacy before any action is announced."},
+{t:"America and our friends and allies join with all those who want peace and security in the world, and we stand together to win the war against terrorism.",a:"ethos",al:"pathos",d:["inclusive", "binary", "metaphor", "sound"],n:"“Friends and allies” and “all those who want peace” build an in-group; “win the war” is a war metaphor with alliteration.",fn:"The frame changes from crime (sentence 23) to war. In a war against a noun, who could ever surrender? If you must “want peace” to be included, where does that leave everyone else? Compare the address of 20 September.",p:1},
+{t:"Tonight I ask for your prayers for all those who grieve, for the children whose worlds have been shattered, for all whose sense of safety and security has been threatened.",a:"pathos",d:["anaphora", "tricolon", "voice", "metaphor", "repetition"],n:"“Shattered” returns: steel was shattered, now worlds. The most personal sentence of the speech: “I ask”, “your”.",p:1},
+{t:"And I pray they will be comforted by a power greater than any of us, spoken through the ages in Psalm 23: “Even though I walk through the valley of the shadow of death, I fear no evil, for You are with me.”",a:"pathos",al:"ethos",d:["allusion", "voice", "inclusive", "repetition"],n:"Scripture as inspirational quotation: borrowed authority and moral weight. “I fear no evil” picks up the evil motif.",fn:"The move from a generic “power greater than any of us” to a specifically Biblical text. Which listeners does that assume?",p:1},
+{t:"This is a day when all Americans from every walk of life unite in our resolve for justice and peace.",a:"pathos",d:["listing", "absolute", "inclusive", "declaration"],n:"“Every walk of life” is a merism, and “all Americans” is absolute. The sentence declares unity rather than describing it.",fn:"Is the speech describing unity, or helping to create it? Who is not in “all Americans”?",p:1},
+{t:"America has stood down enemies before, and we will do so this time.",a:"logos",al:"ethos",d:["precedent", "assertion"],n:"Argument from precedent, the nearest thing to a case study. But which enemies, when, and how? Vague history stands in for evidence."},
+{t:"None of us will ever forget this day.",a:"pathos",d:["absolute", "inclusive"],n:"An absolute promise of memory. It makes remembering a duty, and a duty to remember can hold the audience in the emotion."},
+{t:"Yet, we go forward to defend freedom and all that is good and just in our world.",a:"pathos",al:"ethos",d:["antithesis", "binary", "absolute", "inclusive"],n:"“Yet” turns forgetting into going forward (antithesis). “All that is good and just” is an absolute moral claim.",fn:"A universal mission claimed by one nation: “our world”. Whose?",p:1},
+{t:"Thank you. Good night, and God bless America.",a:"ethos",d:["repetition", "voice"],n:"“Good night” closes the frame opened by “Good evening”.",fn:"After thanking world leaders and praying for all who grieve, the last words return to the nation. What does that return do to the national frame?"}
+];
+S.forEach(function(s,i){
+  s.id=i+1;
+  for(var k in MOVES){ if(s.id>=MOVES[k].from && s.id<=MOVES[k].to){ s.m=k; } }
+});
+
+var STARS=S.filter(function(s){return s.p;}).length;
+var LS="bush911-lab-v2";
+var state={ann:{},pred:null,verdict:"",open:null,keyOpen:{},lens:"off",filter:"ALL",lastDef:null,clear:false};
+try{
+  var raw=localStorage.getItem(LS);
+  if(raw){ var p=JSON.parse(raw); if(p){ state.ann=p.ann||{}; state.pred=p.pred||null; state.verdict=p.verdict||""; } }
+}catch(e){}
+function save(){ try{ localStorage.setItem(LS,JSON.stringify({ann:state.ann,pred:state.pred,verdict:state.verdict})); }catch(e){} }
+
+var teacher=function(){ return location.hash==="#key"; };
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+
+// Lens word lists: the single source for the highlighting. “people” is left out on purpose: its meaning depends on context (“a great people”, “the American people”).
+var LENS_US="(we’re|we|our|us|America|Americans?|Nation|country|citizens|friends and allies)";
+var LENS_THEM="(those who are behind|those responsible|those who harbor|evil|terrorists?|terror|terrorism|enemies|worst)";
+function lensText(t){
+  var l=state.lens; if(l==="off"){ return esc(t); }
+  var rus=LENS_US, rth=LENS_THEM;
+  var src=[]; if(l==="us"||l==="both") src.push("\\b"+rus+"\\b"); if(l==="them"||l==="both") src.push("\\b"+rth+"\\b");
+  var re=new RegExp(src.join("|"),"gi"); var out="",last=0,m;
+  while((m=re.exec(t))){
+    out+=esc(t.slice(last,m.index));
+    var isThem=new RegExp("^"+rth+"$","i").test(m[0]);
+    out+='<span class="'+(isThem?"t":"u")+'">'+esc(m[0])+'</span>';
+    last=m.index+m[0].length;
+  }
+  return out+esc(t.slice(last));
+}
+
+function segHTML(s){
+  var a=state.ann[s.id]||{}; var open=state.open===s.id;
+  var cls="seg"+(open?" open":""); var style=a.appeal?' style="--c:var(--'+a.appeal+')"':"";
+  var h='<div class="'+cls+'" data-id="'+s.id+'"'+style+'>';
+  h+='<button class="row" data-act="toggle" aria-expanded="'+open+'"><span class="no">'+s.id+(s.p?'<br><span class="star" title="Start here">★</span>':'')+'</span><span class="tx">'+lensText(s.t)+(s.fn?'<span class="flag" title="Framing: worth discussing">⚑</span>':"")+'</span></button>';
+  var tags="";
+  if(a.appeal) tags+='<span class="tag ap">'+cap(a.appeal)+'</span>';
+  (a.devices||[]).forEach(function(d){ tags+='<span class="tag">'+esc(DEFS[d][1])+'</span>'; });
+  if(tags && !open) h+='<div class="tags">'+tags+'</div>';
+  if(a.note && !open) h+='<div class="note-show">'+esc(a.note)+'</div>';
+  if(open){
+    h+='<div class="editor">';
+    h+='<div class="lab">Appeal: how is it persuading?</div><div class="aprow">';
+    ["ethos","logos","pathos"].forEach(function(x){ h+='<button class="ab '+x+'" data-act="appeal" data-v="'+x+'" aria-pressed="'+(a.appeal===x)+'">'+cap(x)+'</button>'; });
+    h+='</div><div class="lab">Devices: which techniques?</div><div class="chips">';
+    DEV.forEach(function(d,ix){ if(ix===ARGSTART) h+='</div><div class="grp">Argument and voice</div><div class="chips">'; var on=(a.devices||[]).indexOf(d[0])>-1; h+='<button class="chip" data-act="dev" data-v="'+d[0]+'" aria-pressed="'+on+'" title="'+esc(d[2])+'">'+esc(d[1])+'</button>'; });
+    h+='</div><div class="defline" id="defline">'+(state.lastDef?'<b>'+esc(DEFS[state.lastDef][1])+':</b> '+esc(DEFS[state.lastDef][2]):'Tap a device to see its definition.')+'</div>';
+    h+='<div class="lab">Effect: what might it make the audience think, feel or accept?</div><textarea data-act="note" placeholder="e.g. The three images build shared memory, then three feelings steer it towards anger." aria-label="Effect">'+esc(a.note||"")+'</textarea><div class="starter">Starter: “This makes the listener ___ because ___.”</div>';
+    h+='<div class="eact"><button class="btn" data-act="key">'+(state.keyOpen[s.id]?"Hide suggested reading":"Compare with suggested reading")+'</button><button class="btn" data-act="close">Done</button></div>';
+    h+='</div>';
+  }
+  if(open||teacher()){
+    if(state.keyOpen[s.id]||teacher()){
+      var mine=a.devices||[];
+      h+='<div class="key" style="--c:var(--'+s.a+')"><div class="kh">Suggested reading: one reading, not the answer</div>';
+      h+='<div>Leans <b style="color:var(--'+s.a+')">'+cap(s.a)+'</b>'+(s.al?' <span class="muted">(also '+s.al+')</span>':"")+'</div>';
+      h+='<div style="margin:4px 0">Devices: '+s.d.map(function(d){ return mine.indexOf(d)>-1?'<span class="ok">'+esc(DEFS[d][1])+' ✓</span>':'<span class="miss">'+esc(DEFS[d][1])+'</span>'; }).join(" · ")+'</div>';
+      h+='<div>'+esc(s.n)+'</div>';
+      if(s.fn){ h+= teacher() ? '<div style="margin-top:6px;color:var(--them)">⚑ Framing: '+esc(s.fn)+'</div>' : '<div class="muted" style="margin-top:6px">⚑ This sentence is worth returning to in step 3.</div>'; }
+      h+='</div>';
+    }
+  }
+  return h+'</div>';
+}
+
+function render(){
+  var out="",lastM=null;
+  S.forEach(function(s){
+    if(state.filter==="STAR"){ if(!s.p) return; }
+    else if(state.filter!=="ALL" && s.m!==state.filter) return;
+    if(s.m!==lastM){ lastM=s.m; out+='<div class="mv"><b>'+s.m+'</b>'+esc(MOVES[s.m].name)+'</div>'; }
+    out+=segHTML(s);
+  });
+  document.getElementById("list").innerHTML=out;
+  tally(); counts();
+}
+
+function tally(){
+  var c={ethos:0,logos:0,pathos:0},n=0,sd=0;
+  for(var id in state.ann){ var a=state.ann[id]; if(a.appeal){ c[a.appeal]++; } if(a.appeal||(a.devices&&a.devices.length)||a.note){ n++; if(S[id-1]&&S[id-1].p) sd++; } }
+  var tot=c.ethos+c.logos+c.pathos;
+  function pct(x){ return tot?(100*x/tot):0; }
+  document.getElementById("be").style.width=pct(c.ethos)+"%";
+  document.getElementById("bl").style.width=pct(c.logos)+"%";
+  document.getElementById("bp").style.width=pct(c.pathos)+"%";
+  document.getElementById("ce").textContent=c.ethos; document.getElementById("cl").textContent=c.logos; document.getElementById("cp").textContent=c.pathos;
+  document.getElementById("cdone").textContent="★ "+sd+" of "+STARS+" · "+n+" of "+S.length+" tagged";
+  var pl=document.getElementById("predline");
+  if(state.pred && tot>=3){
+    var lead="ethos"; ["logos","pathos"].forEach(function(k){ if(c[k]>c[lead]) lead=k; });
+    var tie=["ethos","logos","pathos"].filter(function(k){return c[k]===c[lead];}).length>1;
+    pl.textContent="You predicted "+state.pred+". So far your tally "+(tie?"is level at the top.":"leads with "+lead+(lead===state.pred?": prediction holds.":"."));
+  } else if(state.pred){ pl.textContent="You predicted "+state.pred+". Tag a few sentences to test it."; }
+  else { pl.textContent=""; }
+}
+
+function counts(){
+  var all=S.map(function(s){return s.t;}).join(" ");
+  var pron=(all.match(/\b(we’re|we|our|us)\b/gi)||[]).length;
+  var evil=(all.match(/\bevil\b/gi)||[]).length;
+  var names=(all.match(/al[- ]?Qaeda|Qaida|Taliban|Afghanistan|bin Laden|Osama|Islam|Muslim|Arab/gi)||[]).length;
+  document.getElementById("counts").innerHTML=
+   '<div class="cn"><div class="big">'+pron+'</div><div class="sm">times the speech says <b>we, our, us</b></div></div>'+
+   '<div class="cn"><div class="big">'+evil+'</div><div class="sm">times it says <b>evil</b> (counting the Psalm)</div></div>'+
+   '<div class="cn"><div class="big">'+names+'</div><div class="sm"><b>Mentions of selected names and identity terms</b> (searched for al-Qaeda, Taliban, Afghanistan, bin Laden, Islam, Muslim, Arab). A short search list, not proof: read the speech.</div></div>';
+}
+
+function buildFilters(){
+  var f=document.getElementById("filters"); var h='<button class="fbtn" data-f="ALL" aria-pressed="'+(state.filter==="ALL")+'">All</button><button class="fbtn" data-f="STAR" aria-pressed="'+(state.filter==="STAR")+'" title="The sentences to do first">★ Start here</button>';
+  for(var k in MOVES){ h+='<button class="fbtn" data-f="'+k+'" aria-pressed="'+(state.filter===k)+'" title="'+esc(MOVES[k].name)+'">'+k+' · '+esc(MOVES[k].name)+'</button>'; }
+  f.innerHTML=h;
+}
+
+function ensure(id){ if(!state.ann[id]) state.ann[id]={appeal:null,devices:[],note:""}; return state.ann[id]; }
+
+document.getElementById("list").addEventListener("click",function(e){
+  var el=e.target.closest("[data-act]"); if(!el) return;
+  var seg=el.closest(".seg"); var id=+seg.getAttribute("data-id"); var act=el.getAttribute("data-act");
+  if(act==="note") return;
+  if(act==="toggle"){ state.open=(state.open===id)?null:id; render(); if(state.open){ var sg=document.querySelector('.seg[data-id="'+id+'"]'); if(sg&&sg.scrollIntoView){ try{ sg.scrollIntoView({block:"nearest"}); }catch(x){} } } return; }
+  if(act==="close"){ state.open=null; render(); return; }
+  if(act==="key"){ state.keyOpen[id]=!state.keyOpen[id]; render(); return; }
+  var a=ensure(id);
+  if(act==="appeal"){ var v=el.getAttribute("data-v"); a.appeal=(a.appeal===v)?null:v; }
+  if(act==="dev"){ var d=el.getAttribute("data-v"); var i=a.devices.indexOf(d); if(i>-1) a.devices.splice(i,1); else a.devices.push(d); state.lastDef=d; }
+  save(); render();
+});
+document.getElementById("list").addEventListener("input",function(e){
+  if(e.target.getAttribute("data-act")!=="note") return;
+  var id=+e.target.closest(".seg").getAttribute("data-id"); ensure(id).note=e.target.value; save(); tally();
+});
+document.getElementById("filters").addEventListener("click",function(e){
+  var b=e.target.closest("[data-f]"); if(!b) return; state.filter=b.getAttribute("data-f"); state.open=null; buildFilters(); render();
+});
+document.querySelectorAll("[data-pred]").forEach(function(b){
+  b.addEventListener("click",function(){ state.pred=b.getAttribute("data-pred"); save(); syncPred(); tally(); });
+});
+function syncPred(){ document.querySelectorAll("[data-pred]").forEach(function(b){ b.setAttribute("aria-pressed",String(b.getAttribute("data-pred")===state.pred)); }); }
+
+document.getElementById("lens").addEventListener("click",function(e){
+  var b=e.target.closest("[data-lens]"); if(!b) return; state.lens=b.getAttribute("data-lens");
+  document.querySelectorAll("#lens button").forEach(function(x){ x.setAttribute("aria-pressed",String(x===b)); });
+  document.body.classList.toggle("showflags",state.lens!=="off");
+  document.getElementById("lensnote").textContent=state.lens==="off"?"":"Underlined: us / them words. ⚑ marks a sentence worth discussing in step 3.";
+  render();
+});
+
+var vt=document.getElementById("verdict"); vt.value=state.verdict;
+vt.addEventListener("input",function(){ state.verdict=vt.value; save(); });
+
+function exportText(){
+  var o="Speech analysis: Bush, 11 September 2001\n";
+  if(state.pred) o+="Prediction: "+state.pred+"\n";
+  o+="\n";
+  S.forEach(function(s){
+    var a=state.ann[s.id]; if(!a||(!a.appeal&&!(a.devices&&a.devices.length)&&!a.note)) return;
+    o+="["+s.id+"] "+s.t+"\n  Appeal: "+(a.appeal?cap(a.appeal):"-")+"\n  Devices: "+((a.devices||[]).map(function(d){return DEFS[d][1];}).join(", ")||"-")+"\n  Effect: "+(a.note||"-")+"\n\n";
+  });
+  o+="Verdict: "+(state.verdict||"-")+"\n"; return o;
+}
+document.getElementById("copyBtn").addEventListener("click",function(){
+  var msg=document.getElementById("copyMsg"), box=document.getElementById("outbox"), ta=document.getElementById("outta"), txt=exportText();
+  function fallback(){ ta.value=txt; box.classList.remove("hide"); ta.focus(); ta.select(); msg.textContent=""; }
+  try{
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){ msg.textContent="Copied."; box.classList.add("hide"); },fallback);
+    } else { fallback(); }
+  }catch(e){ fallback(); }
+});
+var resetBtn=document.getElementById("resetBtn"),resetT=null;
+resetBtn.addEventListener("click",function(){
+  if(!state.clear){ state.clear=true; resetBtn.textContent="Click again to clear"; resetT=setTimeout(function(){ state.clear=false; resetBtn.textContent="Clear everything"; },3000); return; }
+  clearTimeout(resetT); state.clear=false; resetBtn.textContent="Clear everything";
+  state.ann={}; state.pred=null; state.verdict=""; state.open=null; state.keyOpen={}; vt.value=""; save(); syncPred(); render();
+  document.getElementById("copyMsg").textContent="Cleared.";
+});
+
+var QS=["The nameless enemy: the speech never names the attackers, a group, a country or a grievance. What does “evil” do that a name could not?","Beacon and light: does this speech inherit the moral geography of light and darkness that empires have used? Who is imagined to be in the dark?","From justice to war: where does the frame change, what does each frame allow a government to do, and can a war against a noun ever end?"];
+function buildPrint(){
+  var o='<h1 class="ps-title">Twelve hours after: Bush, 11 September 2001</h1><p class="ps-sub">Address to the Nation, Oval Office, 8.30 p.m. Choose one starred sentence and analyse it thoroughly: tick the appeal it leans on most, name at least two devices and write out the effect. Then find one place you disagree with a suggested reading, and prepare one point to defend in discussion. If you finish early, take a second starred sentence. Appeal = how it persuades. Device = which technique. Effect = what it might make the audience think, feel or accept.</p>';
+  S.forEach(function(s){
+    if(s.p){
+      o+='<div class="ps-row"><p class="ps-s"><span class="ps-n">'+s.id+' ★</span>'+esc(s.t)+'</p>'+
+        '<div class="ps-l">Appeal: ☐ Ethos &nbsp; ☐ Logos &nbsp; ☐ Pathos</div>'+
+        '<div class="ps-l">Devices: <span class="ln"></span></div>'+
+        '<div class="ps-l">Effect: <span class="ln"></span></div><div class="ps-l"><span class="ln"></span></div></div>';
+    } else { o+='<div class="ps-plain"><span class="ps-n">'+s.id+'</span>'+esc(s.t)+'</div>'; }
+  });
+  o+='<div class="ps-h">Choose one question</div>'+QS.map(function(q){return '<p class="ps-q">☐ '+esc(q)+'</p>';}).join("");
+  o+='<div class="ps-h">Verdict</div><p class="ps-q">The most consequential rhetorical strategy in this speech is …, shown by two examples (…) and (…). Its political implication is …</p><div class="ps-l"><span class="ln"></span></div><div class="ps-l"><span class="ln"></span></div><div class="ps-l"><span class="ln"></span></div>';
+  o+='<p class="ps-src">Text: Public Papers of the Presidents of the United States: George W. Bush, 2001, Book II, pp. 1099–1100 (US Government Publishing Office).</p>';
+  document.getElementById("printsheet").innerHTML=o;
+}
+var printBtn=document.getElementById("printBtn");
+printBtn.addEventListener("click",function(){ try{ window.print(); }catch(e){} var t=printBtn.textContent; printBtn.textContent="Or use Ctrl/Cmd+P"; setTimeout(function(){ printBtn.textContent=t; },4000); });
+var themeBtn=document.getElementById("themeBtn");
+function setTheme(light){ document.body.classList.toggle("light",light); themeBtn.textContent=light?"Dark mode":"Light mode"; themeBtn.setAttribute("aria-pressed",String(light)); try{ localStorage.setItem("bush911-theme",light?"light":"dark"); }catch(e){} }
+themeBtn.addEventListener("click",function(){ setTheme(!document.body.classList.contains("light")); });
+try{ if(localStorage.getItem("bush911-theme")==="light") setTheme(true); }catch(e){}
+function applyHash(){ document.body.classList.toggle("teacher",teacher()); render(); }
+window.addEventListener("hashchange",applyHash);
+
+buildPrint(); syncPred(); buildFilters(); applyHash();
+})();
+</script>
+</body>
+</html>
